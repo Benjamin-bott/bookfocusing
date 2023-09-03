@@ -1,0 +1,86 @@
+{% extends "bookfocusing/layout.html" %}
+{% block content %}
+
+
+<div>
+    <form action="" method="POST">
+        {{ form.csrf_token() }}
+        <fieldset class="form-group">
+
+            {% if session.logged_in %}
+            <legend style="margin-top:70px ; height:80px ; font-size:30px">회원정보</legend>
+            {% else %}
+            <legend style="margin-top:70px ; height:80px ; font-size:30px">회원가입</legend>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.name.label(class="form-control-label") }}
+                {% if form.name.errors %}
+                    {{ form.name(class="form-control form-control is-invalid") }}
+                    {% for error in form.name.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {{ form.name(class="form-control form-control") }}
+            {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.student_id.label(class="form-control-label") }}
+                {% if form.student_id.errors %}
+                    {{ form.student_id(class="form-control form-control is-invalid") }}
+                    {% for error in form.student_id.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.student_id(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.passWord.label(class="form-control-label") }}
+                {% if form.passWord.errors %}
+                    {{ form.passWord(class="form-control form-control is-invalid") }}
+                    {% for error in form.passWord.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.passWord(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.Manager.label(class="form-control-label") }}
+                {% if form.Manager.errors %}
+                    {{ form.Manager(class="form-control form-control is-invalid") }}
+                    {% for error in form.Manager.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.Manager(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+            {% if session.logged_in %}
+            <div class="form-group">
+                <input class="btn btn-outline-info" id="submit" name="submit" type="submit" value="확인">
+            {% else %}
+            <div class="form-group">
+                <input class="btn btn-outline-info" id="submit" name="submit" type="submit" value="등록">
+            {% endif %}
+
+
+        </fieldset>
+    </form>
+</div>
+
+
+{% endblock %}

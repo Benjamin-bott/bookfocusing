@@ -1,0 +1,25 @@
+{% extends "bookfocusing/layout.html" %}
+{% block link %}main.css{% endblock %}
+
+
+<body>
+{% block content %}
+<div>
+<div class='box'>
+    <div class='wave -one'></div>
+    <div class='wave -two'></div>
+    <div class='wave -three'></div>
+    <div class='title'>Book-Focusing</div>
+
+    {% if session.logged_in %}
+    {% else %}
+    <p><a class="btn btn-danger col text-center position-absolute top-50 start-50 translate-middle"  href="{{url_for('bookfocusing.signup') }}"  style="height: 80px; font-size: 40px; width: 500px; margin-top:700px; margin-left:-120px;" tabindex="-1" role="button" aria-disabled="true">회원가입</a></p>
+    <p><a class="btn btn-light col text-center position-absolute top-100 start-50 translate-middle" href="{{url_for('bookfocusing.login') }}"  style="height: 80px; font-size: 40px; width: 500px; margin-top:800px; margin-left:-120px;" tabindex="-1" role="button" aria-disabled="true">로그인</a></p>
+    {% endif %}
+
+
+    <!--{{session['logged_in']}}
+    {{session['user']}}-->
+</div>
+{% endblock %}
+</body>

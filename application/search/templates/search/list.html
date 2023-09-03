@@ -1,0 +1,35 @@
+{% extends "bookfocusing/layout.html" %}
+{% block content %}
+<div>
+    {% for need in needs %}
+        <div class="card p-1 m-3">
+            <div class="card-body">
+
+            <p class="card-text">{{ need.title }}</p>
+            <p class="card-text">{{ need.shelf}}</p>
+            <p class="card-text">{{ need.block}}</p>
+            <p class="card-text">{{ need.writer}}</p>
+            <p class="card-text">{{ need.loan}}</p>
+
+            <a href="{{url_for('search.flag', id=need._id) }}" class="btn btn-outline-info btn-sm">찾기</a>    
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if total_pages > 1 %}
+      <ul class="pagination">
+          {% for page_num in range(1, total_pages + 1) %}
+              <li class="page-item {% if page_num == page %}active{% endif %}">
+                  <a class="page-link" href="{{ url_for('search.book', needbook=needbook, page=page_num) }}">{{ page_num }}</a>
+              </li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+

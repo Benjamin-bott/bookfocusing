@@ -1,0 +1,8 @@
+.custom-pagination .page-link {
+    color: rgba(255, 0, 0, 0.822); /* Change the color to your desired color */
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: rgba(255, 0, 0, 0.822); /* Change the background color of the active link */
+    border-color: rgba(255, 0, 0, 0.822); /* Change the border color of the active link */
+}

@@ -1,0 +1,60 @@
+{% extends "bookfocusing/layout.html" %}
+{% block link %}manage.css{% endblock %}
+{% block content %}
+
+<div class="mb-3" style="margin-top: 50px;">
+    <form class="form-inline" action="{{ url_for('search.management') }}" method="GET">
+        <div class="form-group">
+            <label for="searchName" class="mr-2">Search by Title:</label>
+            <input type="text" class="form-control" id="searchName" name="name" placeholder="Enter title">
+        </div>
+        <button type="submit" class="btn btn-danger ml-2">Search</button>
+    </form>
+</div>
+
+<div>
+    {% for todo in todos %}
+        <div class="card p-1 m-3">
+            <div class="card-body">
+                {% if todo.loan == "True" %}
+                <h5 class="card-title"><del>{{ todo.name }}</del></h5>
+                {% else %}
+                <h5 class="card-title">{{ todo.name }}</h5>
+                {% endif %}
+                <p class="card-text text-muted">{{ todo.date_created }}</p>
+                <p class="card-text">{{ todo.title }}</p>
+                <p class="card-text">{{ todo.shelf}}</p>
+                <p class="card-text">{{ todo.block}}</p>
+                <p class="card-text">{{ todo.writer}}</p>
+                <p class="card-text">{{ todo.loan}}</p>
+                
+                <a href="{{ url_for('search.update_book', id = todo._id) }}" class="btn btn-outline-info btn-sm">정보수정</a>
+                <a href="{{ url_for('search.delete_book', id = todo._id) }}" class="btn btn-outline-danger btn-sm">회원삭제</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination custom-pagination">
+        {% if current_page > 1 %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('search.management', name=request.args.get('name'), page=current_page-1) }}">Previous</a>
+            </li>
+        {% endif %}
+        {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {% if page_num == current_page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('search.management', name=request.args.get('name'), page=page_num) }}">{{ page_num }}</a>
+            </li>
+        {% endfor %}
+        {% if current_page < total_pages %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('search.management', name=request.args.get('name'), page=current_page+1) }}">Next</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<a href="{{ url_for('search.add_book') }}" class="btn btn-danger btn-floating btn-lg registration-btn">도서추가
+</a>
+{% endblock %}
