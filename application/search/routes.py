@@ -164,4 +164,5 @@ def book(needbook):
 @search.route("/flag/<id>")
 def flag(id):
     db.book_info.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"flag": '1'}})
-    return 
+    flash("블럭이 곧 작동됩니다. 해당하는 책장으로 이동해주십시오.")
+    return redirect(url_for("search.books"))
