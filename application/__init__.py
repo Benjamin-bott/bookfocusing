@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "81185101eb0ebc8a409352fd778528e2ac355daa"
-app.config["MONGO_URI"] = "mongodb+srv://KimHY:rlaguswn12@kimhyeonju.o9b3ukl.mongodb.net/Bitdol?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://cutetina329:seungbin0329%40@seungbin.2rwvbzs.mongodb.net/searchDB?retryWrites=true&w=majority"
 
 
 # setup mongodb
